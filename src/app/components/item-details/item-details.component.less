@@ -1,0 +1,32 @@
+.item-details-container {
+    padding: 32px;
+
+    .mat-card {
+        padding: 16px 24px;
+
+        /deep/.mat-card-header-text {
+            margin-left: 0;
+        }
+
+        .mat-card-content {
+            .item-details {
+                label {
+                    width: 200px;
+                }
+            }
+        }
+        
+        .mat-card-actions {
+            margin: 0;
+            padding-top: 16px;
+    
+            button {
+                width: 100px;
+        
+                &:last-child {
+                    margin-left: 16px;
+                }
+            }
+        }
+    }   
+}

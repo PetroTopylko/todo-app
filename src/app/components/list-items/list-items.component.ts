@@ -1,14 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Todo } from 'src/app/models/todo.model';
+import { TodoItem } from 'src/app/models/todo-item.model';
 
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-}
-
-const ELEMENT_DATA: Todo[] = [
+const ELEMENT_DATA: TodoItem[] = [
   {id: 'id12345', name: 'testName 1', description: 'testDescription 1', createdAt: '23.05.2020', editedAt: '24.05.2020'},
   {id: 'id12346', name: 'testName 2', description: 'testDescription 2', createdAt: '24.05.2020', editedAt: '25.05.2020'},
   {id: 'id12347', name: 'testName 3', description: 'testDescription 3', createdAt: '25.05.2020', editedAt: '26.05.2020'},
@@ -17,11 +10,11 @@ const ELEMENT_DATA: Todo[] = [
 ];
 
 @Component({
-  selector: 'todo',
-  templateUrl: './todo.component.html',
-  styleUrls: ['./todo.component.less']
+  selector: 'list-items',
+  templateUrl: './list-items.component.html',
+  styleUrls: ['./list-items.component.less']
 })
-export class TodoComponent implements OnInit {
+export class ListItemsComponent implements OnInit {
 
   displayedColumns: string[] = ['sequenceNumber', 'name', 'createdAt', 'editedAt', 'editDelete'];
   dataSource = ELEMENT_DATA;
