@@ -8,7 +8,7 @@
 
         <ng-container matColumnDef="name">
           <th mat-header-cell *matHeaderCellDef> Name </th>
-          <td mat-cell *matCellDef="let element" (click)="getItemDetails(element.id)"> {{element.name}} </td>
+          <td mat-cell *matCellDef="let element" class="item-name" (click)="getItemDetails(element.id)"> {{element.name}} </td>
         </ng-container>
 
         <ng-container matColumnDef="createdAt">

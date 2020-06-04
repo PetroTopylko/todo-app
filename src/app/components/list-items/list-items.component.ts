@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { TodoItemsService } from 'src/app/services/todo-items.service';
 import { TodoItem, EditItemDialogData } from 'src/app/models/todo-item.model';
 import { EditItemComponent } from '../edit-item/edit-item.component';
+import { ConfirmDialogComponent } from 'src/app/dialogs/confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'list-items',
@@ -43,7 +44,10 @@ export class ListItemsComponent implements OnInit {
     };
     const dialogRef = this.dialog.open(
       EditItemComponent, {
-        data: newItem
+        data: {
+          ...newItem,
+          isNew: true
+        }
       }
     );
 
@@ -55,7 +59,10 @@ export class ListItemsComponent implements OnInit {
   onEditItem(item: TodoItem) {
     const dialogRef = this.dialog.open(
       EditItemComponent, {
-        data: item
+        data: {
+          ...item,
+          isNew: false
+        }
       }
     );
 
@@ -65,7 +72,10 @@ export class ListItemsComponent implements OnInit {
   }
 
   onDeleteItem() {
-    console.log("delete item");
+    const dialogRef = this.dialog.open(ConfirmDialogComponent);
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
+    });
   }
 
 }

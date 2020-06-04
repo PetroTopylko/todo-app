@@ -1,10 +1,11 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 
 import { TodoItem } from 'src/app/models/todo-item.model';
 import { TodoItemsService } from 'src/app/services/todo-items.service';
 import { EditItemComponent } from '../edit-item/edit-item.component';
+import { ConfirmDialogComponent } from 'src/app/dialogs/confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'item-details',
@@ -16,6 +17,7 @@ export class ItemDetailsComponent implements OnInit {
   model: TodoItem;
 
   constructor(
+    public router: Router,
     private route: ActivatedRoute,
     private server: TodoItemsService,
     public dialog: MatDialog
@@ -32,10 +34,17 @@ export class ItemDetailsComponent implements OnInit {
     });
   }
 
+  onBackToItems() {
+    this.router.navigate(['/']);
+  }
+
   onEditItem() {
     const dialogRef = this.dialog.open(
       EditItemComponent, {
-        data: this.model
+        data: {
+          ...this.model,
+          isNew: false
+        }
       }
     );
 
@@ -45,7 +54,10 @@ export class ItemDetailsComponent implements OnInit {
   }
 
   onDeleteItem() {
-    console.log("delete item");
+    const dialogRef = this.dialog.open(ConfirmDialogComponent);
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
+    });
   }
 
 }

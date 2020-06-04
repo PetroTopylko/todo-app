@@ -1,5 +1,5 @@
 <div class="edit-item-container">
-    <h2 mat-dialog-title> <span>Create</span><span>Edit</span> Item</h2>
+    <h2 mat-dialog-title> <span *ngIf="data.isNew">Create</span><span *ngIf="!data.isNew">Edit</span> Item</h2>
     <div mat-dialog-content>
         <mat-form-field appearance="outline">
             <mat-label>Name</mat-label>
