@@ -1,0 +1,18 @@
+<div class="edit-item-container">
+    <h2 mat-dialog-title> <span>Create</span><span>Edit</span> Item</h2>
+    <div mat-dialog-content>
+        <mat-form-field appearance="fill">
+            <mat-label>Name</mat-label>
+            <input matInput>
+            </mat-form-field>
+            <br>
+            <mat-form-field appearance="fill">
+            <mat-label>Description</mat-label>
+            <textarea matInput></textarea>
+        </mat-form-field>
+    </div>
+    <mat-dialog-actions align="end">
+        <button mat-raised-button mat-dialog-close>Cancel</button>
+        <button mat-raised-button [mat-dialog-close]="true" cdkFocusInitial>Save</button>
+    </mat-dialog-actions>
+</div>

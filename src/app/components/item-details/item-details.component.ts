@@ -15,11 +15,11 @@ export class ItemDetailsComponent implements OnInit {
   ngOnInit() {
   }
 
-  onEdit() {
+  onEditItem() {
     console.log("edit item");
   }
 
-  onDelete() {
+  onDeleteItem() {
     console.log("delete item");
   }
 

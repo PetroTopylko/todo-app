@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { TodoItem } from 'src/app/models/todo-item.model';
+import { EditItemComponent } from '../edit-item/edit-item.component';
 
 const ELEMENT_DATA: TodoItem[] = [
   {id: 'id12345', name: 'testName 1', description: 'testDescription 1', createdAt: '23.05.2020', editedAt: '24.05.2020'},
@@ -19,9 +21,24 @@ export class ListItemsComponent implements OnInit {
   displayedColumns: string[] = ['sequenceNumber', 'name', 'createdAt', 'editedAt', 'editDelete'];
   dataSource = ELEMENT_DATA;
 
-  constructor() { }
+  constructor(public dialog: MatDialog) { }
 
   ngOnInit() {
+  }
+
+  onAddItem() {
+    console.log("add item");
+    this.dialog.open(
+      EditItemComponent
+    );
+  }
+
+  onEditItem() {
+    console.log("edit item");
+  }
+
+  onDeleteItem() {
+    console.log("delete item");
   }
 
 }
