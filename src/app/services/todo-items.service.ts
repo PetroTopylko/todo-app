@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
+import { retry, catchError } from 'rxjs/operators';
 
 import { TodoItem } from '../models/todo-item.model';
 
@@ -8,36 +10,64 @@ import { TodoItem } from '../models/todo-item.model';
 })
 export class TodoItemsService {
 
-  items: TodoItem[] = [
-    {id: 'id12345', name: 'testName 1', description: 'testDescription 1', createdAt: '23.05.2020', editedAt: '24.05.2020'},
-    {id: 'id12346', name: 'testName 2', description: 'testDescription 2', createdAt: '24.05.2020', editedAt: '25.05.2020'},
-    {id: 'id12347', name: 'testName 3', description: 'testDescription 3', createdAt: '25.05.2020', editedAt: '26.05.2020'},
-    {id: 'id12348', name: 'testName 4', description: 'testDescription 4', createdAt: '26.05.2020', editedAt: '27.05.2020'},
-    {id: 'id12349', name: 'testName 5', description: 'testDescription 5', createdAt: '27.05.2020', editedAt: '28.05.2020'}
-  ];
+  apiURL = 'http://localhost:3000';
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
+
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json'
+    })
+  }  
 
   public getItems(): Observable<TodoItem[]> {
-    return of(this.items);
+    return this.http.get<TodoItem[]>(this.apiURL + '/data')
+    .pipe(
+      retry(1),
+      catchError(this.handleError)
+    )
   }
 
   public getItem(id: string) {
-    const item = this.items.find(el => el.id === id);
-    return of(item);
+    return this.http.get<TodoItem>(this.apiURL + '/data/' + id)
+    .pipe(
+      retry(1),
+      catchError(this.handleError)
+    )
   }
 
   createItem(data: TodoItem) {
-    // TODO:
+    return this.http.post<TodoItem>(this.apiURL + '/data', JSON.stringify(data), this.httpOptions)
+    .pipe(
+      retry(1),
+      catchError(this.handleError)
+    )
   }
 
   updateItem(id: string, data: TodoItem) {
-    // TODO:
+    return this.http.put<TodoItem>(this.apiURL + '/data/' + id, JSON.stringify(data), this.httpOptions)
+    .pipe(
+      retry(1),
+      catchError(this.handleError)
+    )
   }
 
   public deleteItem(id: string) {
-    this.items = this.items.filter(el => el.id !== id);
-    return of({ action: 'done' });
+    return this.http.delete<TodoItem>(this.apiURL + '/data/' + id, this.httpOptions)
+    .pipe(
+      retry(1),
+      catchError(this.handleError)
+    )
   }
 
+  handleError(error) {
+    let errorMessage = '';
+    if(error.error instanceof ErrorEvent) {
+      errorMessage = error.error.message;
+    } else {
+      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+    }
+    console.error(errorMessage);
+    return throwError(errorMessage);
+  }
 }
