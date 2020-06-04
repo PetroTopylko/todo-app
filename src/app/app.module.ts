@@ -1,6 +1,7 @@
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -18,6 +19,7 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { ItemDetailsComponent } from './components/item-details/item-details.component';
 import { EditItemComponent } from './components/edit-item/edit-item.component';
 import { ConfirmDialogComponent } from './dialogs/confirm-dialog/confirm-dialog.component';
+import { TodoItemsService } from './services/todo-items.service';
 
 @NgModule({
   declarations: [
@@ -31,6 +33,7 @@ import { ConfirmDialogComponent } from './dialogs/confirm-dialog/confirm-dialog.
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    FormsModule,
     AppRoutingModule,
     MatTableModule,
     MatButtonModule,
@@ -45,7 +48,9 @@ import { ConfirmDialogComponent } from './dialogs/confirm-dialog/confirm-dialog.
     EditItemComponent,
     ConfirmDialogComponent
   ],
-  providers: [],
+  providers: [
+    TodoItemsService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

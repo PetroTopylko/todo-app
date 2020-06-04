@@ -1,15 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
-import { TodoItem } from 'src/app/models/todo-item.model';
-import { EditItemComponent } from '../edit-item/edit-item.component';
 
-const ELEMENT_DATA: TodoItem[] = [
-  {id: 'id12345', name: 'testName 1', description: 'testDescription 1', createdAt: '23.05.2020', editedAt: '24.05.2020'},
-  {id: 'id12346', name: 'testName 2', description: 'testDescription 2', createdAt: '24.05.2020', editedAt: '25.05.2020'},
-  {id: 'id12347', name: 'testName 3', description: 'testDescription 3', createdAt: '25.05.2020', editedAt: '26.05.2020'},
-  {id: 'id12348', name: 'testName 4', description: 'testDescription 4', createdAt: '26.05.2020', editedAt: '27.05.2020'},
-  {id: 'id12349', name: 'testName 5', description: 'testDescription 5', createdAt: '27.05.2020', editedAt: '28.05.2020'}
-];
+import { TodoItemsService } from 'src/app/services/todo-items.service';
+import { TodoItem, EditItemDialogData } from 'src/app/models/todo-item.model';
+import { EditItemComponent } from '../edit-item/edit-item.component';
 
 @Component({
   selector: 'list-items',
@@ -19,22 +14,54 @@ const ELEMENT_DATA: TodoItem[] = [
 export class ListItemsComponent implements OnInit {
 
   displayedColumns: string[] = ['sequenceNumber', 'name', 'createdAt', 'editedAt', 'editDelete'];
-  dataSource = ELEMENT_DATA;
+  dataSource: TodoItem[] = [];
 
-  constructor(public dialog: MatDialog) { }
+  constructor(
+    private server: TodoItemsService,
+    public dialog: MatDialog, 
+    public router: Router
+  ) { }
 
   ngOnInit() {
+    this.loadData();
+  }
+
+  loadData() {
+    this.server.getItems().subscribe(res => {
+      this.dataSource = res;
+    });
+  }
+
+  getItemDetails(id: string) {
+    this.router.navigate(['/item', id]);
   }
 
   onAddItem() {
-    console.log("add item");
-    this.dialog.open(
-      EditItemComponent
+    let newItem: EditItemDialogData = {
+      name: '',
+      description: ''
+    };
+    const dialogRef = this.dialog.open(
+      EditItemComponent, {
+        data: newItem
+      }
     );
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
+    });
   }
 
-  onEditItem() {
-    console.log("edit item");
+  onEditItem(item: TodoItem) {
+    const dialogRef = this.dialog.open(
+      EditItemComponent, {
+        data: item
+      }
+    );
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
+    });
   }
 
   onDeleteItem() {

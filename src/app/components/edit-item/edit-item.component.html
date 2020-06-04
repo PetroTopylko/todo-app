@@ -1,18 +1,18 @@
 <div class="edit-item-container">
     <h2 mat-dialog-title> <span>Create</span><span>Edit</span> Item</h2>
     <div mat-dialog-content>
-        <mat-form-field appearance="fill">
+        <mat-form-field appearance="outline">
             <mat-label>Name</mat-label>
-            <input matInput>
+            <input matInput [(ngModel)]="data.name">
             </mat-form-field>
             <br>
-            <mat-form-field appearance="fill">
+            <mat-form-field appearance="outline">
             <mat-label>Description</mat-label>
-            <textarea matInput></textarea>
+            <textarea matInput [(ngModel)]="data.description"></textarea>
         </mat-form-field>
     </div>
     <mat-dialog-actions align="end">
         <button mat-raised-button mat-dialog-close>Cancel</button>
-        <button mat-raised-button [mat-dialog-close]="true" cdkFocusInitial>Save</button>
+        <button mat-raised-button [mat-dialog-close]="data" cdkFocusInitial>Save</button>
     </mat-dialog-actions>
 </div>
