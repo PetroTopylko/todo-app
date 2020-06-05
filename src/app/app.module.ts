@@ -23,6 +23,8 @@ import { ConfirmDialogComponent } from './dialogs/confirm-dialog/confirm-dialog.
 import { TodoItemsService } from './services/todo-items.service';
 import { IdGeneratorService } from './services/id-generator.service';
 import { LoginComponent } from './components/login/login.component';
+import { UserAuthGuard } from './core/guards/user-auth.guard';
+import { AuthService } from './services/auth.service';
 
 @NgModule({
   declarations: [
@@ -56,7 +58,9 @@ import { LoginComponent } from './components/login/login.component';
   ],
   providers: [
     TodoItemsService,
-    IdGeneratorService
+    IdGeneratorService,
+    UserAuthGuard,
+    AuthService
   ],
   bootstrap: [AppComponent]
 })

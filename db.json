@@ -52,5 +52,9 @@
       "editedAt": "2020-06-05T14:48:16.019Z",
       "createdAt": "2020-06-05T14:48:16.019Z"
     }
-  ]
+  ],
+  "user": {
+    "login": "qwerty",
+    "password": "qwerty12345"
+  }
 }
