@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -21,6 +21,7 @@ import { ItemDetailsComponent } from './components/item-details/item-details.com
 import { EditItemComponent } from './components/edit-item/edit-item.component';
 import { ConfirmDialogComponent } from './dialogs/confirm-dialog/confirm-dialog.component';
 import { TodoItemsService } from './services/todo-items.service';
+import { IdGeneratorService } from './services/id-generator.service';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { TodoItemsService } from './services/todo-items.service';
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     AppRoutingModule,
     MatTableModule,
@@ -51,7 +53,8 @@ import { TodoItemsService } from './services/todo-items.service';
     ConfirmDialogComponent
   ],
   providers: [
-    TodoItemsService
+    TodoItemsService,
+    IdGeneratorService
   ],
   bootstrap: [AppComponent]
 })

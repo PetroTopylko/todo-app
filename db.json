@@ -1,39 +1,51 @@
 {
-    "data": [
-        {
-            "id": "id12345", 
-            "name": "testName 1", 
-            "description": "testDescription 1", 
-            "createdAt": "23.05.2020",
-            "editedAt": "24.05.2020"
-        },
-        {
-            "id": "id12346", 
-            "name": "testName 2", 
-            "description": "testDescription 2", 
-            "createdAt": "24.05.2020",
-            "editedAt": "25.05.2020"
-        },
-        {
-            "id": "id12347", 
-            "name": "testName 3", 
-            "description": "testDescription 3", 
-            "createdAt": "25.05.2020",
-            "editedAt": "26.05.2020"
-        },
-        {
-            "id": "id12348", 
-            "name": "testName 4", 
-            "description": "testDescription 4", 
-            "createdAt": "26.05.2020",
-            "editedAt": "27.05.2020"
-        },
-        {
-            "id": "id12349", 
-            "name": "testName 5", 
-            "description": "testDescription 5", 
-            "createdAt": "27.05.2020",
-            "editedAt": "28.05.2020"
-        }
-    ]
+  "data": [
+    {
+      "id": "id12345",
+      "name": "testName 12345",
+      "description": "testDescription 1",
+      "createdAt": "23.05.2020",
+      "editedAt": "2020-06-05T12:49:15.950Z",
+      "isNew": false
+    },
+    {
+      "id": "id12346",
+      "name": "testName 2",
+      "description": "testDescription 2",
+      "createdAt": "24.05.2020",
+      "editedAt": "25.05.2020"
+    },
+    {
+      "id": "id12347",
+      "name": "testName 3",
+      "description": "testDescription 3",
+      "createdAt": "25.05.2020",
+      "editedAt": "2020-06-05T09:34:02.414Z",
+      "isNew": false
+    },
+    {
+      "id": "id12348",
+      "name": "testName 4",
+      "description": "testDescription 4",
+      "createdAt": "26.05.2020",
+      "editedAt": "2020-06-05T10:02:49.926Z",
+      "isNew": false
+    },
+    {
+      "id": "id12349",
+      "name": "testName 5",
+      "description": "testDescription 5",
+      "createdAt": "27.05.2020",
+      "editedAt": "2020-06-05T11:04:59.115Z",
+      "isNew": false
+    },
+    {
+      "name": "test3",
+      "description": "test3",
+      "isNew": true,
+      "id": "57ada6bd-a093-4b82-869e-6cf16d586f7c",
+      "editedAt": "2020-06-05T10:44:55.219Z",
+      "createdAt": "2020-06-05T10:44:55.219Z"
+    }
+  ]
 }

@@ -25,7 +25,7 @@
             <th mat-header-cell *matHeaderCellDef class="buttons-col"></th>
             <td mat-cell *matCellDef="let element" class="buttons-col">
                 <button mat-raised-button (click)="onEditItem(element)">Edit</button>
-                <button mat-raised-button (click)="onDeleteItem()">Delete</button>
+                <button mat-raised-button (click)="onDeleteItem(element.id)">Delete</button>
             </td>
         </ng-container>
       

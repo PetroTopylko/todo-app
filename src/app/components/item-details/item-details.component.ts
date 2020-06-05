@@ -6,6 +6,7 @@ import { TodoItem } from 'src/app/models/todo-item.model';
 import { TodoItemsService } from 'src/app/services/todo-items.service';
 import { EditItemComponent } from '../edit-item/edit-item.component';
 import { ConfirmDialogComponent } from 'src/app/dialogs/confirm-dialog/confirm-dialog.component';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'item-details',
@@ -14,18 +15,32 @@ import { ConfirmDialogComponent } from 'src/app/dialogs/confirm-dialog/confirm-d
 })
 export class ItemDetailsComponent implements OnInit {
 
-  model: TodoItem;
+  model: TodoItem = {
+    id: '',
+    name: '',
+    description: '',
+    createdAt: '',
+    editedAt: ''
+  };
+  itemId: string = '';
+  itemIdSub: Subscription;
 
   constructor(
-    public router: Router,
-    private route: ActivatedRoute,
     private server: TodoItemsService,
+    public router: Router,
+    public route: ActivatedRoute,
     public dialog: MatDialog
   ) { }
 
   ngOnInit() {
-    const itemId = this.route.params['value'].id;
-    this.loadData(itemId);
+    this.itemIdSub = this.route.params.subscribe(res => {
+      this.itemId = res.id;
+      this.loadData(this.itemId);
+    })
+  }
+
+  ngOnDestroy() {
+    this.itemIdSub.unsubscribe();
   }
 
   loadData(id: string) {
@@ -49,13 +64,24 @@ export class ItemDetailsComponent implements OnInit {
     );
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
+      if(result) {
+        const res = {
+          ...result,
+          editedAt: new Date()
+        }
+        this.server.updateItem(res.id, res).subscribe(() => this.loadData(result.id));
+      }
     });
   }
 
   onDeleteItem() {
     const dialogRef = this.dialog.open(ConfirmDialogComponent);
     dialogRef.afterClosed().subscribe(result => {
+
+      if(result) {
+        this.server.deleteItem(result.id).subscribe(() => this.onBackToItems());
+      }
+
       console.log(result);
     });
   }

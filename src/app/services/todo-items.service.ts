@@ -16,6 +16,7 @@ export class TodoItemsService {
 
   httpOptions = {
     headers: new HttpHeaders({
+      'Accept': 'application/json',
       'Content-Type': 'application/json'
     })
   }  
