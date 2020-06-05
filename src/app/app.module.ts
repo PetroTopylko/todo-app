@@ -22,6 +22,7 @@ import { EditItemComponent } from './components/edit-item/edit-item.component';
 import { ConfirmDialogComponent } from './dialogs/confirm-dialog/confirm-dialog.component';
 import { TodoItemsService } from './services/todo-items.service';
 import { IdGeneratorService } from './services/id-generator.service';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { IdGeneratorService } from './services/id-generator.service';
     ListItemsComponent,
     ItemDetailsComponent,
     EditItemComponent,
-    ConfirmDialogComponent
+    ConfirmDialogComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

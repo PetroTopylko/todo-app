@@ -13,11 +13,7 @@
         </mat-form-field>
     </div>
     <mat-dialog-actions align="end">
-        <!-- <button mat-raised-button mat-dialog-close>Cancel</button>
-        <button mat-raised-button [mat-dialog-close]="data" cdkFocusInitial>Save</button> -->
-
         <button mat-raised-button mat-dialog-close>Cancel</button>
-        <button mat-raised-button (click)="save()">Save</button>
-
+        <button mat-raised-button (click)="save()" [disabled]="form.invalid">Save</button>
     </mat-dialog-actions>
 </div>
