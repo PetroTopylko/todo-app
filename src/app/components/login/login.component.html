@@ -4,21 +4,21 @@
                 <mat-card-title>Login</mat-card-title>
             </mat-card-header>
             <mat-divider></mat-divider>
-            <mat-card-content>
+            <mat-card-content [formGroup]="form">
                 <mat-form-field appearance="outline">
-                    <mat-label>Login</mat-label>
-                    <input type="text" matInput>
-                    <mat-error>Name is required.</mat-error>
+                    <mat-label>Email</mat-label>
+                    <input type="text" matInput formControlName = "login">
+                    <mat-error *ngIf="form.controls.login.touched && form.controls.login.invalid">Email is required.</mat-error>
                 </mat-form-field> 
                 <mat-form-field appearance="outline">
                     <mat-label>Password</mat-label>
-                    <input type="password" matInput>
-                    <mat-error>Name is required.</mat-error>
+                    <input type="password" matInput formControlName = "password">
+                    <mat-error *ngIf="form.controls.password.touched && form.controls.password.invalid">Password is required.</mat-error>
                 </mat-form-field>
             </mat-card-content>
             <mat-divider></mat-divider>
             <mat-card-actions align="end">
-                <button mat-raised-button (click)="onLogin()">Login</button>
+                <button mat-raised-button (click)="onLogin()" [disabled]="form.invalid">Login</button>
             </mat-card-actions>
         </mat-card>
     </div>

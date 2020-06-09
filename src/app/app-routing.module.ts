@@ -9,7 +9,8 @@ import { UserAuthGuard } from './core/guards/user-auth.guard';
 const routes: Routes = [
   { path: "login", component: LoginComponent },
   { path: '', component: ListItemsComponent, canActivate: [UserAuthGuard] },
-  { path: 'item/:id', component: ItemDetailsComponent, canActivate: [UserAuthGuard] }
+  { path: 'item/:id', component: ItemDetailsComponent, canActivate: [UserAuthGuard] },
+  { path: '**', redirectTo: '' }
 ];
 
 @NgModule({
