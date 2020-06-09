@@ -17,12 +17,13 @@ export class TodoItemsService {
   httpOptions = {
     headers: new HttpHeaders({
       'Accept': 'application/json',
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ` + localStorage.getItem('access_token')
     })
   }  
 
   public getItems(): Observable<TodoItem[]> {
-    return this.http.get<TodoItem[]>(this.apiURL + '/data')
+    return this.http.get<TodoItem[]>(this.apiURL + '/data', this.httpOptions)
     .pipe(
       retry(1),
       catchError(this.handleError)
@@ -30,7 +31,7 @@ export class TodoItemsService {
   }
 
   public getItem(id: string) {
-    return this.http.get<TodoItem>(this.apiURL + '/data/' + id)
+    return this.http.get<TodoItem>(this.apiURL + '/data/' + id, this.httpOptions)
     .pipe(
       retry(1),
       catchError(this.handleError)

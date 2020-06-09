@@ -49,12 +49,11 @@
     },
     {
       "id": "23bf76d1-4be6-4a82-a515-d57419ea606a",
-      "editedAt": "2020-06-05T14:48:16.019Z",
-      "createdAt": "2020-06-05T14:48:16.019Z"
+      "editedAt": "2020-06-09T22:58:33.651Z",
+      "createdAt": "2020-06-05T14:48:16.019Z",
+      "isNew": false,
+      "name": "test4",
+      "description": "test 4 description"
     }
-  ],
-  "user": {
-    "login": "qwerty",
-    "password": "qwerty12345"
-  }
+  ]
 }

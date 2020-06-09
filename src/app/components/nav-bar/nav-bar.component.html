@@ -1,3 +1,3 @@
 <div class="nav-bar-container">
-    <button mat-raised-button>Logout</button>
+    <button mat-raised-button *ngIf="isLogined" (click)="onLogout()">Logout</button>
 </div>
