@@ -77,12 +77,9 @@ export class ItemDetailsComponent implements OnInit {
   onDeleteItem() {
     const dialogRef = this.dialog.open(ConfirmDialogComponent);
     dialogRef.afterClosed().subscribe(result => {
-
       if(result) {
-        this.server.deleteItem(result.id).subscribe(() => this.onBackToItems());
+        this.server.deleteItem(this.itemId).subscribe(() => this.onBackToItems());
       }
-
-      console.log(result);
     });
   }
 

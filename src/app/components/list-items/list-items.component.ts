@@ -54,14 +54,16 @@ export class ListItemsComponent implements OnInit {
     );
 
     dialogRef.afterClosed().subscribe(result => {
-      const newItemId = this.idGeneratorService.generateId();
-      const res = {
-        ...result,
-        id: newItemId,
-        editedAt: new Date(),
-        createdAt: new Date()
+      if(result) {
+        const newItemId = this.idGeneratorService.generateId();
+        const res = {
+          ...result,
+          id: newItemId,
+          editedAt: new Date(),
+          createdAt: new Date()
+        }
+        this.server.createItem(res).subscribe(() => this.loadData());
       }
-      this.server.createItem(res).subscribe(() => this.loadData());
     });
   }
 

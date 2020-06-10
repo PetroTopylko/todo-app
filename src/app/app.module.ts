@@ -23,6 +23,7 @@ import { ConfirmDialogComponent } from './dialogs/confirm-dialog/confirm-dialog.
 import { TodoItemsService } from './services/todo-items.service';
 import { IdGeneratorService } from './services/id-generator.service';
 import { LoginComponent } from './components/login/login.component';
+import { LayoutComponent } from './components/layout/layout.component';
 import { UserAuthGuard } from './core/guards/user-auth.guard';
 import { AuthService } from './services/auth.service';
 
@@ -34,7 +35,8 @@ import { AuthService } from './services/auth.service';
     ItemDetailsComponent,
     EditItemComponent,
     ConfirmDialogComponent,
-    LoginComponent
+    LoginComponent,
+    LayoutComponent
   ],
   imports: [
     BrowserModule,
